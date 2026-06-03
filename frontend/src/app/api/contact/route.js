@@ -1,7 +1,6 @@
 import { NextResponse } from 'next/server';
-
-// Temporary in-memory storage (will reset when Vercel serverless function spins down)
-global.messagesStore = global.messagesStore || [];
+import { db } from '@/lib/firebase';
+import { collection, addDoc, getDocs, query, orderBy } from 'firebase/firestore';
 
 export async function POST(request) {
   try {
@@ -15,20 +14,21 @@ export async function POST(request) {
     }
     
     const newMessage = {
-      id: Date.now().toString(),
       email: data.email,
       subject: data.subject || 'No Subject',
       message: data.message,
       date: new Date().toISOString(),
     };
     
-    global.messagesStore.push(newMessage);
+    // Save to Firebase Firestore
+    await addDoc(collection(db, 'messages'), newMessage);
     
     return NextResponse.json(
       { success: true, message: 'Message sent successfully' },
       { status: 200 }
     );
   } catch (error) {
+    console.error("Firebase POST error:", error);
     return NextResponse.json(
       { error: 'Failed to process request' },
       { status: 500 }
@@ -48,5 +48,22 @@ export async function GET(request) {
     );
   }
   
-  return NextResponse.json({ messages: global.messagesStore || [] }, { status: 200 });
+  try {
+    // Retrieve from Firebase Firestore
+    const messagesQuery = query(collection(db, 'messages'), orderBy('date', 'desc'));
+    const querySnapshot = await getDocs(messagesQuery);
+    
+    const messages = [];
+    querySnapshot.forEach((doc) => {
+      messages.push({ id: doc.id, ...doc.data() });
+    });
+    
+    return NextResponse.json({ messages }, { status: 200 });
+  } catch (error) {
+    console.error("Firebase GET error:", error);
+    return NextResponse.json(
+      { error: 'Failed to retrieve messages' },
+      { status: 500 }
+    );
+  }
 }

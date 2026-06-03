@@ -76,7 +76,7 @@ export default function Messages() {
         {messages.length === 0 ? (
           <div className="result-card" style={{ textAlign: 'center' }}>No messages yet!</div>
         ) : (
-          messages.slice().reverse().map((msg) => (
+          messages.map((msg) => (
             <div key={msg.id} className="result-card" style={{ marginBottom: '15px', textAlign: 'left' }}>
               <div className="disease-name" style={{ fontSize: '1.2rem' }}>{msg.subject}</div>
               <div style={{ color: '#aed581', marginBottom: '10px', fontSize: '0.9rem' }}>
