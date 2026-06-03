@@ -120,7 +120,7 @@ export default function Home() {
   };
 
   return (
-    <main className="container">
+    <main className="container" style={{ marginTop: "6rem" }}>
       <h1>Rice Leaf Disease Detector</h1>
       <p className="subtitle">Identify diseases instantly using deep learning.</p>
 
