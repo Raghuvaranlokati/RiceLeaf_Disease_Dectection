@@ -1,0 +1,76 @@
+.contactForm {
+  background: rgba(30, 41, 59, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 30px;
+  border-radius: 12px;
+  max-width: 500px;
+  width: 100%;
+  margin: 30px auto;
+  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(10px);
+}
+
+.formGroup {
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+.formGroup label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 500;
+  color: #e2e8f0;
+  font-size: 0.95rem;
+}
+
+.formGroup input,
+.formGroup textarea {
+  width: 100%;
+  padding: 12px 15px;
+  background: rgba(15, 23, 42, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  color: white;
+  font-family: inherit;
+  font-size: 1rem;
+  transition: border-color 0.3s ease;
+}
+
+.formGroup input:focus,
+.formGroup textarea:focus {
+  outline: none;
+  border-color: #aed581;
+}
+
+.submitBtn {
+  width: 100%;
+  padding: 14px;
+  background-color: #aed581;
+  color: #1e3c00;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 10px;
+}
+
+.submitBtn:hover:not(:disabled) {
+  background-color: #9ccc65;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(174, 213, 129, 0.3);
+}
+
+.submitBtn:disabled {
+  background-color: #556b2f;
+  color: rgba(255, 255, 255, 0.5);
+  cursor: not-allowed;
+}
+
+.errorMsg {
+  color: #ff8a65;
+  text-align: center;
+  margin-top: 15px;
+  font-size: 0.9rem;
+}

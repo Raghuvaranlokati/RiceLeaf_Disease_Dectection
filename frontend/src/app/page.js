@@ -1,17 +1,19 @@
 "use client";
 
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import "./globals.css";
 
 export default function Home() {
   const [selectedFile, setSelectedFile] = useState(null);
   const [preview, setPreview] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
+  const [loadingTime, setLoadingTime] = useState(0);
   const [result, setResult] = useState(null);
   const [error, setError] = useState(null);
   const [isDragActive, setIsDragActive] = useState(false);
   
   const fileInputRef = useRef(null);
+  const timerRef = useRef(null);
 
   const handleFileChange = (e) => {
     if (e.target.files && e.target.files.length > 0) {
@@ -67,10 +69,23 @@ export default function Home() {
     fileInputRef.current.click();
   };
 
+  useEffect(() => {
+    if (isLoading) {
+      setLoadingTime(0);
+      timerRef.current = setInterval(() => {
+        setLoadingTime((prev) => prev + 1);
+      }, 1000);
+    } else {
+      clearInterval(timerRef.current);
+    }
+    return () => clearInterval(timerRef.current);
+  }, [isLoading]);
+
   const handlePredict = async () => {
     if (!selectedFile) return;
 
     setIsLoading(true);
+    setLoadingTime(0);
     setError(null);
 
     const formData = new FormData();
@@ -136,7 +151,7 @@ export default function Home() {
           <button 
             className="predict-btn" 
             onClick={result ? resetForm : handlePredict}
-            disabled={isLoading}
+            disabled={isLoading || loadingTime >= 300}
           >
             {isLoading ? (
               <><span className="spinner"></span> Running Analysis...</>
@@ -146,6 +161,24 @@ export default function Home() {
               "Start Prediction"
             )}
           </button>
+          
+          {isLoading && loadingTime >= 5 && loadingTime < 300 && (
+            <div className="funny-message">
+              <p>My backend is sleeping 😴💤!</p>
+              <p>It will take 1 - 3 mins to wake up because I am using it freely.</p>
+              <div className="timer-display">
+                {Math.floor(loadingTime / 60).toString().padStart(2, '0')}:
+                {(loadingTime % 60).toString().padStart(2, '0')}
+              </div>
+            </div>
+          )}
+
+          {isLoading && loadingTime >= 300 && (
+            <div className="error-message timeout-message">
+              <p>Not responding! 😢</p>
+              <p>Please connect with the admin by mailing <a href="mailto:raghuvaranlokati@gmail.com">raghuvaranlokati@gmail.com</a></p>
+            </div>
+          )}
         </div>
       )}
 

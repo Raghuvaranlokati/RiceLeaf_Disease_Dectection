@@ -11,7 +11,10 @@ export default function RootLayout({ children }) {
       <head>
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
       </head>
-      <body>{children}</body>
+      <body>
+        <a href="/contact" className="connect-btn">Contact Admin</a>
+        {children}
+      </body>
     </html>
   );
 }
