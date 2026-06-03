@@ -1,9 +1,9 @@
 import "./globals.css";
-import Link from 'next/link';
+import Link from "next/link";
 
 export const metadata = {
   title: "Rice Leaf Disease Detector",
-  description: "Detect diseases in rice leaves instantly using Machine Learning.",
+  description: "AI-powered rice leaf disease detection system",
 };
 
 export default function RootLayout({ children }) {
@@ -17,8 +17,7 @@ export default function RootLayout({ children }) {
           <Link href="/" className="logo-text">🌾 RiceDetector</Link>
           <div className="nav-links">
             <Link href="/" className="nav-link">Home</Link>
-            <Link href="/contact" className="nav-link">Contact Admin</Link>
-            <Link href="/messages" className="nav-link">Messages</Link>
+            <Link href="/contact" className="nav-link">Contact</Link>
           </div>
         </nav>
         {children}
