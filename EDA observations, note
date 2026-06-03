@@ -1,0 +1,136 @@
+# EDA Summary and Observations
+
+## Dataset Overview
+
+The Rice Leaf Disease dataset contains three disease categories:
+
+* Bacterial Leaf Blight
+* Brown Spot
+* Leaf Smut
+
+During dataset inspection, a total of 119 images were found. The class distribution is as follows:
+
+* Bacterial Leaf Blight: 40 images
+* Brown Spot: 40 images
+* Leaf Smut: 39 images
+
+Although the project description mentions 120 images, only 119 images were available after extraction. The dataset is nearly balanced, with only one image missing from the Leaf Smut class.
+
+---
+
+## Image Format Analysis
+
+All images were found to be RGB color images. No grayscale images were present in the dataset. Therefore, no color space conversion is required before model training.
+
+---
+
+## Image Dimension Analysis
+
+Image dimension analysis revealed significant variation in image sizes across classes.
+
+### Bacterial Leaf Blight
+
+* Number of unique image sizes: 1
+* Image size: (3081, 897)
+
+All images in this class have identical dimensions, indicating a highly consistent image acquisition process.
+
+### Brown Spot
+
+* Number of unique image sizes: 20
+* Minimum image size: (286, 92)
+* Maximum image size: (3081, 897)
+
+The Brown Spot class contains images with multiple resolutions and dimensions.
+
+### Leaf Smut
+
+* Number of unique image sizes: 15
+* Minimum image size: (250, 200)
+* Maximum image size: (3081, 897)
+
+The Leaf Smut class also contains images with varying dimensions.
+
+These findings indicate that image resizing is necessary during preprocessing to create a uniform input size for deep learning models.
+
+---
+
+## Aspect Ratio Analysis
+
+Aspect ratio analysis was performed to understand image shape consistency.
+
+### Bacterial Leaf Blight
+
+* Number of unique aspect ratios: 1
+* Aspect ratio: 3.43
+
+All images have the same aspect ratio.
+
+### Brown Spot
+
+* Number of unique aspect ratios: 20
+
+Images contain a wide range of aspect ratios, indicating substantial variation in image shapes.
+
+### Leaf Smut
+
+* Number of unique aspect ratios: 15
+
+Images contain multiple aspect ratios and varying image shapes.
+
+The variation in aspect ratios confirms the need for image resizing before model training.
+
+---
+
+## Image Quality Analysis
+
+Visual inspection of sample images from all three classes revealed the following:
+
+* Leaves are clearly visible.
+* Disease symptoms are clearly visible.
+* Backgrounds are consistent across images.
+* Images are not blurry.
+* Images have similar orientation.
+* No significant lighting variations were observed.
+
+These observations indicate that the dataset has good visual quality and is suitable for image classification tasks.
+
+---
+
+## Corrupted Image Analysis
+
+A corrupted image check was performed on all classes.
+
+Results:
+
+* Total corrupted images: 0
+
+All images were readable and valid.
+
+---
+
+## Duplicate Image Analysis
+
+Duplicate image detection was performed on all classes.
+
+Results:
+
+* Total duplicate images: 0
+
+No duplicate images were found in the dataset.
+
+---
+
+## Overall Observations
+
+* The dataset contains three disease classes.
+* The dataset is nearly balanced with 119 images.
+* All images are RGB images.
+* No corrupted images were found.
+* No duplicate images were detected.
+* Bacterial Leaf Blight images are highly consistent in size and aspect ratio.
+* Brown Spot and Leaf Smut images exhibit considerable variation in dimensions and aspect ratios.
+* Image quality is good, with clear disease symptoms and consistent backgrounds.
+* Image resizing will be required before model training.
+
+Based on the EDA findings, the dataset is clean, reliable, and suitable for building a deep learning model for rice leaf disease classification.
