@@ -216,7 +216,10 @@ export default function Home() {
           )}
         </div>
       )}
-
+      
+      <footer className="footer" style={{ marginTop: '2rem', textAlign: 'center', color: '#94a3b8' }}>
+        Love by Raghuvaran
+      </footer>
 
     </main>
   );
