@@ -112,6 +112,6 @@ Distributed under the MIT License. See `LICENSE` for more information.
 ---
 
 <div align="center">
-  <h3>Made with ❤️ by <a href="https://github.com/raghuvaranlokati">Raghuvaran</a></h3>
+  <h3>Made with ❤️ by <a href="https://github.com/raghuvaranlokati">Raghuvaran Lokati</a></h3>
   <p>If you found this repository helpful, please consider leaving a ⭐!</p>
 </div>
